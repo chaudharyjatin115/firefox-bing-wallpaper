@@ -78,8 +78,12 @@ mkdir -p "$PROFILE_PATH/chrome"
 
 # installer script
 echo "Copying script..."
-cp scripts/bing-wallpaper.sh "$HOME_DIR/.local/bin/bing-wallpaper.sh"
-chmod +x "$HOME_DIR/.local/bin/bing-wallpaper.sh"
+cp scripts/bing-wallpaper.sh "$HOME/.local/bin/bing-wallpaper.sh"
+
+# fix possible windows line endings (prevents systemd exec errors)
+sed -i 's/\r$//' "$HOME/.local/bin/bing-wallpaper.sh"
+
+chmod +x "$HOME/.local/bin/bing-wallpaper.sh"
 
 # CSS injection 
 echo "Writing CSS..."
