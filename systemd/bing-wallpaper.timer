@@ -1,0 +1,10 @@
+[Unit]
+Description=Run Bing Wallpaper every 6 hours
+
+[Timer]
+OnBootSec=2min
+OnUnitActiveSec=1h
+Persistent=true
+
+[Install]
+WantedBy=default.target

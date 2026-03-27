@@ -1,0 +1,8 @@
+@-moz-document url("about:home"), url("about:newtab") {
+  body {
+    background-image: url("file:///home/YOUR_USERNAME/.local/share/bing-home/wallpaper.jpg") !important;
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+  }
+}
