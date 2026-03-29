@@ -7,7 +7,7 @@ LAST="$DIR/last.txt"
 mkdir -p "$DIR"
 
 # Fetch only needed lines (less memory)
-URLS=$(curl -s "https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=7" \
+URLS=$(curl -s "https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=en-IN"\
   | grep -o '"url":"[^"]*"' \
   | cut -d'"' -f4)
 
