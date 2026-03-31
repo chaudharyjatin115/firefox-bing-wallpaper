@@ -114,7 +114,6 @@ Description=Bing wallpaper updater
 Type=oneshot
 ExecStart=$HOME_DIR/.local/bin/bing-wallpaper.sh
 EOF
-
 cat > "$HOME_DIR/.config/systemd/user/bing-wallpaper.timer" << EOF
 [Unit]
 Description=Bing wallpaper timer
@@ -125,8 +124,9 @@ OnUnitActiveSec=$INTERVAL
 Persistent=true
 
 [Install]
-WantedBy=default.target
+WantedBy=timers.target
 EOF
+
 
 # reload systemd 
 systemctl --user daemon-reload

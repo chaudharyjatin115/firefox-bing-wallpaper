@@ -1,9 +1,14 @@
+TIMER_FILE="$HOME/.config/systemd/user/bing-wallpaper.timer"
+
+cat > "$TIMER_FILE" <<EOF
 [Unit]
-Description=Run Bing Wallpaper every 6 hours
+Description=Bing wallpaper timer
 
 [Timer]
-OnCalendar=daily
+OnBootSec=1min
+OnUnitActiveSec=$INTERVAL
 Persistent=true
 
 [Install]
-WantedBy=default.target
+WantedBy=timers.target
+EOF
