@@ -2,8 +2,7 @@
 Description=Run Bing Wallpaper every 6 hours
 
 [Timer]
-OnBootSec=2min
-OnUnitActiveSec=1h
+OnCalendar=daily
 Persistent=true
 
 [Install]
