@@ -9,7 +9,8 @@ Minimal tool to set Bing daily wallpapers as Firefox homepage background.
 -  works on default homescreen no need to use firefox extensions 
 - updates in background
 
-- <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/fcec7b72-2154-4f3d-96f2-f23c00801167" />
+- <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/b4ee6a53-615d-4a67-b63b-93413e50913d" />
+
 
 
 
