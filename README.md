@@ -25,8 +25,10 @@ Optional:
 
 - libnotify (for notifications)
 - dos2unix (for line ending fixes)
+
 On Arch Linux:
 sudo pacman -S curl libnotify dos2unix
+
 ## Install
 
 ```bash
