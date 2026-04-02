@@ -7,7 +7,7 @@ LAST="$DIR/last.txt"
 mkdir -p "$DIR"
 
 # Fetch only needed lines (less memory)
-URLS=$(curl -s "https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=en-IN"\
+URLS=$(curl -s "https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=8&mkt=en-IN"\
   | grep -o '"url":"[^"]*"' \
   | cut -d'"' -f4)
 
@@ -25,7 +25,8 @@ while true; do
 done
 
 echo "$URL" > "$LAST"
-
+# Force refresh
+rm -f "$IMG"
 # Download (no extra memory usage)
 curl -s "https://www.bing.com$URL" -o "$IMG"
 
