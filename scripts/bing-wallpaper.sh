@@ -6,28 +6,35 @@ LAST="$DIR/last.txt"
 
 mkdir -p "$DIR"
 
-# Fetch only needed lines (less memory)
-URLS=$(curl -s "https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=8&mkt=en-IN"\
-  | grep -o '"url":"[^"]*"' \
-  | cut -d'"' -f4)
+API="https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=8&mkt=${MARKET:-en-IN}"
 
-# Convert to array safely
-readarray -t ARR <<< "$URLS"
+# Extract URLs directly (no big variables)
+mapfile -t ARR < <(
+  curl -s "$API" |
+  grep -o '"url":"[^"]*"' |
+  cut -d'"' -f4
+)
 
 COUNT=${#ARR[@]}
 [ "$COUNT" -eq 0 ] && exit 1
 
-# Pick different image
-while true; do
-    INDEX=$((RANDOM % COUNT))
+# Read last once (no repeated cat)
+[ -f "$LAST" ] || echo "" > "$LAST"
+LAST_URL=$(<"$LAST")
+
+# Pick random safely (no infinite loop)
+INDEX=$((RANDOM % COUNT))
+URL="${ARR[$INDEX]}"
+
+# If same, just shift index (O(1), no loop)
+if [ "$URL" = "$LAST_URL" ] && [ "$COUNT" -gt 1 ]; then
+    INDEX=$(((INDEX + 1) % COUNT))
     URL="${ARR[$INDEX]}"
-    [ ! -f "$LAST" ] || [ "$URL" != "$(cat "$LAST")" ] && break
-done
+fi
 
 echo "$URL" > "$LAST"
-# Force refresh
-rm -f "$IMG"
-# Download (no extra memory usage)
-curl -s "https://www.bing.com$URL" -o "$IMG"
+
+# Download directly (overwrite, no rm needed)
+curl -f -s "https://www.bing.com$URL" -o "$IMG" || exit 1
 
 echo "Wallpaper updated"
