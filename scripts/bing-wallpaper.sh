@@ -5,7 +5,7 @@ IMG="$DIR/wallpaper.jpg"
 LAST="$DIR/last.txt"
 
 mkdir -p "$DIR"
-
+touch "$LAST"
 API="https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=8&mkt=${MARKET:-en-IN}"
 
 # Extract URLs directly (no big variables)

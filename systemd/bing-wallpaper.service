@@ -4,3 +4,6 @@ Description=Update Bing Wallpaper
 [Service]
 Type=oneshot
 ExecStart=%h/.local/bin/bing-home.sh
+StandardOutput=journal
+StandardError=journal
+TimeoutStartSec=20
