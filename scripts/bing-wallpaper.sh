@@ -10,7 +10,7 @@ LAST="$DIR/last.txt"
 mkdir -p "$DIR"
 touch "$LAST"
 
-API="https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=${MARKET:-en-IN}"
+API="https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=$LIMIT&mkt=${MARKET:-en-IN}"
 
 # decide wallpapers based on interval
 INTERVAL="${INTERVAL:-6h}"
