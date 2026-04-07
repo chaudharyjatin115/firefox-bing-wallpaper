@@ -3,6 +3,7 @@ Description=Update Bing Wallpaper
 
 [Service]
 Type=oneshot
+EnvironmentFile=%h/.config/bing-wallpaper.conf
 ExecStart=%h/.local/bin/bing-home.sh
 StandardOutput=journal
 StandardError=journal
