@@ -70,6 +70,14 @@ esac
 echo ""
 echo "Interval set to $INTERVAL"
 echo ""
+CONFIG="$HOME/.config/bing-wallpaper.conf"
+
+mkdir -p "$(dirname "$CONFIG")"
+
+echo "INTERVAL=$INTERVAL" > "$CONFIG"
+echo "MARKET=en-IN" >> "$CONFIG"
+
+echo "Config saved to $CONFIG"
 
 # dirs should exist but eh
 mkdir -p "$HOME_DIR/.local/bin"
