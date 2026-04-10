@@ -25,7 +25,7 @@ esac
 
 API="https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=$LIMIT&mkt=${MARKET:-en-IN}"
 
-# grab wallpaper urls
+# grabbing  wallpaper urls
 mapfile -t ARR < <(
   curl -s "$API" |
   grep -o '"url":"[^"]*"' |
@@ -37,23 +37,29 @@ COUNT=${#ARR[@]}
 
 LAST_URL=$(<"$LAST")
 
-# pick wallpaper
+# pick wallpaperon rotation base
 if [ "$LIMIT" -eq 1 ]; then
   URL="${ARR[0]}"   # latest only
 else
-  INDEX=$((RANDOM % COUNT))
-  URL="${ARR[$INDEX]}"
+  INDEX_FILE="$DIR/index.txt"
 
-  # avoid repeating same one
-  if [ "$URL" = "$LAST_URL" ] && [ "$COUNT" -gt 1 ]; then
-    INDEX=$(((INDEX + 1) % COUNT))
-    URL="${ARR[$INDEX]}"
-  fi
+  # create if missing
+  [ -f "$INDEX_FILE" ] || echo 0 > "$INDEX_FILE"
+
+  CURRENT_INDEX=$(<"$INDEX_FILE")
+
+  NEXT_INDEX=$(( (CURRENT_INDEX + 1) % COUNT ))
+
+  URL="${ARR[$NEXT_INDEX]}"
+
+  echo "$NEXT_INDEX" > "$INDEX_FILE"
 fi
-
 echo "$URL" > "$LAST"
 
-# Download directly (overwrite, no rm needed)
+curl -f -s "https://www.bing.com$URL" -o "$IMG" || exit 1
+echo "$URL" > "$LAST"
+
+# Download directly 
 curl -f -s "https://www.bing.com$URL" -o "$IMG" || exit 1
 
 echo "Wallpaper updated"
