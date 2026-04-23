@@ -1,6 +1,6 @@
 @-moz-document url("about:home"), url("about:newtab") {
   body {
-    background-image: url("file:///home/YOUR_USERNAME/.local/share/bing-home/wallpaper.jpg") !important;
+    background-image: url("file:///home/jatin/.local/share/bing-home/wallpaper.jpg?v=1");
     background-size: cover !important;
     filter: brightness(0.9) contrast(1.1);
     background-position: center !important;
