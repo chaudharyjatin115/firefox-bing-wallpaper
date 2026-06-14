@@ -25,7 +25,7 @@ Required:
 Optional:
 
 - libnotify (for notifications)
-- dos2unix (for line ending fixes)
+- dos2unix 
 
 On Arch Linux:
 sudo pacman -S curl libnotify dos2unix
