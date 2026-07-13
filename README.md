@@ -38,3 +38,4 @@ git clone https://github.com/chaudharyjatin115/firefox-bing-wallpaper.git
 cd firefox-bing-wallpaper
 chmod +x install.sh
 ./install.sh
+follow the on screen instructions
